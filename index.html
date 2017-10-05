@@ -81,10 +81,29 @@
 								<label for="emailUpdate">Email:</label>
 								<input type="email" class="form-control" id="emailUpdate">
 							</div>
-								<input type="hidden" id="idUpdate" value="">
+								
 							<div class="form-group col-md-12">
 								<button type="button" class="btn btn-success btn-block" onclick="updateFunc()">Atualizar</button>
 							</div>
+						</form>
+					</div>
+					<div id="delete" class="collapse">
+						<input type="hidden" id="idDelete" value="">
+						<div id="warning" class="col-md-12">
+							
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<button type="button" class="btn btn-success btn-block" onclick="delFunc()">Sim</button>
+							</div>
+							<div class="col-md-6">
+								<button type="button" class="btn btn-danger btn-block" data-toggle='collapse' data-target='#delete'>Não</button>
+							</div>
+							
+						</div>
+
+								
+
 						</form>
 					</div>
 					<table class="table table-striped" id="tableBody">
@@ -132,7 +151,7 @@
 		 		email = "email"+i;
 		 		// alert(name);
 		 		
-	    		tableContent = tableContent+"<tr id='"+i+"'><td id='"+i+"'>"+localStorage.getItem(name)+"</td><td id='"+i+"'>"+localStorage.getItem(phone)+"</td><td id='"+i+"'>"+localStorage.getItem(email)+"</td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#remove'><span id='"+i+"' class='glyphicon glyphicon-remove'></span></a></td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#update' onclick='toUpdate("+i+")'><span id='"+i+"' class='glyphicon glyphicon-pencil'></span> </a></td></tr>";
+	    		tableContent = tableContent+"<tr id='"+i+"'><td id='"+i+"'>"+localStorage.getItem(name)+"</td><td id='"+i+"'>"+localStorage.getItem(phone)+"</td><td id='"+i+"'>"+localStorage.getItem(email)+"</td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#delete' onclick='toDelete("+i+")'><span id='"+i+"' class='glyphicon glyphicon-remove'></span> </a></td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#update' onclick='toUpdate("+i+")'><span id='"+i+"' class='glyphicon glyphicon-pencil'></span> </a></td></tr>";
 	    	}
 	    	document.getElementById("tableContent").innerHTML = tableContent;
 	    }
@@ -239,5 +258,62 @@
 
 		setTimeout(location.reload(), 200);
 	}
+
+	function toDelete(divId) {
+		
+		
+
+		var name = "name"+divId;
+		var phone = "phone"+divId;
+		var email = "email"+divId;
+
+		    // alert(name);
+
+		var nameUpdate = localStorage.getItem(name);
+		var phoneUpdate = localStorage.getItem(phone);
+		var emailUpdate = localStorage.getItem(email);
+		
+		//alert("aqui");
+		
+		document.getElementById("idDelete").value = divId;
+		document.getElementById("warning").innerHTML = '<div class="alert alert-warning"><strong>Aviso!</strong><br>Você está querendo excluir o registro: <br>Nome: '+nameUpdate+' <br> Telefone: '+phoneUpdate+' <br> Email: '+emailUpdate+'</div>';
+		
+	}
+	function delFunc() {
+
+		var divId = document.getElementById("idDelete").value;
+
+
+		var name = "name" + divId ;
+		var phone = "phone" + divId ; 
+		var email = "email" + divId ;
+
+		var nameEnd = "name" + (localStorage.getItem("size")-1) ;
+		var phoneEnd = "phone" + (localStorage.getItem("size")-1) ; 
+		var emailEnd = "email" + (localStorage.getItem("size")-1) ;
+
+		
+		
+		var nameE = localStorage.getItem(nameEnd);;
+		var phoneE = localStorage.getItem(phoneEnd);
+		var emailE = localStorage.getItem(emailEnd);
+		
+
+		localStorage.setItem(name,nameE); 
+		localStorage.setItem(phone,phoneE);
+		localStorage.setItem(email,emailE);
+
+		alert("Registro Removido");
+
+		localStorage.removeItem(nameEnd);
+		localStorage.removeItem(phoneEnd);
+		localStorage.removeItem(emailEnd);
+
+		localStorage.setItem("size",localStorage.getItem("size")-1);
+
+		setTimeout(location.reload(), 200);
+
+
+	}
 	//localStorage.setItem("size", 0);
-</script>
+</script>	
