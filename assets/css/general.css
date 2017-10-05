@@ -1,0 +1,192 @@
+@font-face {
+    font-family: Roboto-Condensed;
+    src: url("/assets/font/RobotoCondensed-Regular.ttf");
+}
+@font-face {
+    font-family: Roboto;
+    src: url("/assets/font/Roboto.ttf");
+}
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("/assets/font/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: Dolce-Vita-Heavy-Bold;
+    src: url("/assets/font/Dolce-Vita-Heavy-Bold.ttf");
+}
+@font-face {
+    font-family: Dolce-Vita;
+    src: url("/assets/font/Dolce-Vita.ttf");
+}
+@font-face {
+    font-family: Dolce-Vita-Light;
+    src: url("/assets/font/Dolce-Vita-Light.ttf");
+}
+
+.infobox{}
+.background-green{
+  background-color: #5cb85c ;
+  color: #EDEDED;
+}
+.background-red{
+  background-color:#d9534f;
+  color: #EDEDED;
+}
+.background-yellow{
+  background-color:;
+  color: #EDEDED;
+}
+.background-blue{
+  background-color:#428bca;
+  color: #EDEDED;
+}
+
+.background-light-green{
+  background-color: #7cc67c ;
+  color: #EDEDED;
+}
+.background-light-red{
+  background-color:#e07572;
+  color: #EDEDED;
+}
+.background-light-yellow{
+  background-color:;
+  color: #EDEDED;
+}
+.background-light-blue{
+  background-color:#67a2d4;
+  color: #EDEDED;
+}
+
+#body {
+	background-color:#F2F2F2 ;
+	font-family: Roboto-Condensed;
+	color: #455A64;
+}
+#horizontalSeparator {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(69, 90, 100, 0.4);
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+#notLogged .loginPanel{
+	margin-top: 200px !important;
+	border-radius: 5px;
+	border-color: #12C972;
+	border-width: 1px;
+	border-style: solid;
+	padding:20px;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=27, Direction=0, Color=#FFC107)";/*IE 8*/
+	-moz-box-shadow: 0 0 27px 3px rgba(18,201,114,0.5);/*FF 3.5+*/
+	-webkit-box-shadow: 0 0 27px 3px rgba(18,201,114,0.5);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 0 27px 3px rgba(18,201,114,0.5);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=27, Direction=135, Color=#FFC107); /*IE 5.5-7*/
+}
+#notLogged .loginPanelBody{
+	/*background-color: #212121;*/
+
+}#notLogged .title{
+	text-align: center;
+	font-size: 90px;
+  margin-bottom: : -20px;
+  /*margin-top: -20px;*/
+  /*background-image: url("./assets/img/logo.png");*/
+}
+#notLogged .systemLogo{
+  margin-top: 5px;
+}
+}#notLogged .loginLogo{
+
+  /*background-image: url("./assets/img/logo.png");*/
+}
+#notLogged .registerPanel{
+	margin-top: 150px !important;
+
+	border-radius: 5px;
+	border-color: #FFC107;
+	border-width: 1px;
+	border-style: solid;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=27, Direction=0, Color=#FFC107)";/*IE 8*/
+	-moz-box-shadow: 0 0 27px 3px rgba(255,193,7,0.4);/*FF 3.5+*/
+	-webkit-box-shadow: 0 0 27px 3px rgba(255,193,7,0.4);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 0 27px 3px rgba(255,193,7,0.4);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=27, Direction=135, Color=#FFC107); /*IE 5.5-7*/
+}
+#notLogged .loginPanelBody .message{
+	margin-top: 20px;
+}
+#notLogged .loginPanelBody .javascriptSelector{
+	position: relative;
+}
+#logged {}
+#logged #header {
+	border-bottom-width: 1px;
+	border-bottom-style:solid;
+	border-bottom-color: #12C972;
+	background-color: #455A64 !important;
+	color:#EDEDED;
+	font-size: 30px;
+	padding: 7px;
+	padding-right: 13px;
+}
+#logged .systemLogo{
+  height: 270%;
+  margin-top: -15px !important;
+  /*margin-bottom: 50px;*/
+
+}
+#logged #header #menuTitle{
+	color:#EDEDED;
+	background-color: #455A64 !important;
+}
+#logged #header #menuTitle:hover{
+	color:#EDEDED;
+	background-color: #455A64 !important;
+}
+#logged #header .title{
+	font-size: 45px;
+}
+
+#logged .sideMenu {
+	border-top-width: 0px;
+	border-width: 1px;
+	border-style:solid;
+	border-color:#12C972;
+	background-color: #455A64;
+  padding-top: 7px;
+  padding-bottom: 7px;
+	color:#EDEDED !important;
+	font-size: 25px;
+}
+#logged #sideMenu .sideMenuItem{
+  text-align: left;
+	padding: 7px;
+	font-size: 18px;
+	/*color:#EDEDED !important;*/
+}
+#logged #sideMenu .sideMenuItem:hover{
+  /*color:#455A64 !important;
+	background-color: #12C972;*/
+}
+
+#logged #sideMenu .sideMenuIcon{
+	padding-right: 4px;
+	/*color:#EDEDED !important;*/
+}
+#logged #sideMenu .sideMenuText{
+	color:#EDEDED !important;
+  background-color: #455A64;
+}
+#logged #sideMenu .sideMenuText:hover{
+	color:#EDEDED !important;
+	background-color: #12C972;
+}
+#logged #dashboard{
+	text-align: center;
+}

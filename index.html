@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+		<head>
+			<meta charset="utf-8">
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		    <meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta http-equiv="content-type" content="text/html; charset=uft-8">
+
+
+
+		    <link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.eot">
+	        <link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.svg">
+	        <link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.ttf">
+	        <link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.woff">
+	        <link rel="stylesheet" type="text/css" href="assets/bootstrap/fonts/glyphicons-halflings-regular.woff2">
+			<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+			<link href="assets/css/general.css" rel="stylesheet">
+		    <!-- Bootstrap -->
+		    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		    <title>Agenda</title>
+		</head>
+	<body id="body">
+		<div class="col-md-10 col-md-offset-1" style="padding: 20px;">
+			<div class="container-fluid">
+
+				<h1 class="col-md-12">Agenda</h1>
+				<div class="col-md-4" >
+
+					<div class="col-md-12" data-toggle="collapse" data-target="#add"><h3>Adicionar</h3></div>
+
+					 <div id="add" class="collapse">
+					    <form class="col-md-12">
+							<div class="form-group">
+							  <label for="nameAdd">Nome:</label>
+							  <input type="text" class="form-control" id="nameAdd">
+							</div>
+							<div class="form-group">
+							  <label for="phoneAdd">Telefone:</label>
+							  <input type="number" class="form-control" id="phoneAdd">
+							</div>
+							<div class="form-group">
+							  <label for="emailAdd">Email:</label>
+							  <input type="email" class="form-control" id="emailAdd">
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-success btn-block" onclick="addNew()">Cadastrar</button>
+							</div>
+						</form>
+					</div>
+					
+					<div class="col-md-12" data-toggle="collapse" data-target="#search"><h3>Pesquisar</h3></div>
+					<div id="search" class="collapse">
+					    <form class="col-md-12">
+							<div class="form-group">
+							  <label for="nameSearch">Busca por nome:</label>
+							  <input type="text" class="form-control" id="nameSearch">
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-success btn-block">Cadastrar</button>
+							</div>
+						</form>
+					  </div>
+					
+					
+				</div>
+				
+				<div class="col-md-8" >
+					<table class="table table-striped" id="tableBody">
+					    <thead>
+					      <tr>
+					        <th>Nome</th>
+					        <th>Telefone</th>
+					        <th>Email</th>
+					        <th>Opções</th>
+					      </tr>
+					    </thead>
+					    <tbody id="tableContent">
+					    </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	<div id="result"></div>
+
+	
+
+	</body>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</html>
+
+
+
+<script>
+	// Check browser support
+	if (typeof(Storage) !== "undefined") {	
+		
+		if (localStorage.getItem("size") === null) {
+			alert(localStorage.getItem("size"));
+			// localStorage.setItem("size", 0);		
+		}
+		else{
+			document.getElementById("result").innerHTML = localStorage.getItem("size");
+			var mySize = localStorage.getItem("size");
+		}
+	    if (mySize == 0) {
+	    	document.getElementById("tableBody").innerHTML = '<div class="alert alert-danger"><strong>Aviso!</strong> Sua agenda está vazia.</div>' ;
+	    }else{
+	    	var tableContent = "";
+	    	for (var i = 0 ; i <= mySize ; i++) {
+	    		tableContent = tableContent+"<tr><td>John</td><td>Doe</td><td>john@example.com</td></tr>";
+	    	}
+	    	document.getElementById("tableContent").innerHTML = tableContent;
+	    }
+	} else {
+	    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+
+	function addNew(){
+		var mySize = localStorage.getItem("size");
+		var name = "name"+size;
+		var phone = "phone"+size; 
+		var email = "email"+size;
+
+
+		localStorage.setItem(name, document.getElementById('nameAdd').value);
+		localStorage.setItem(phone, document.getElementById('phoneAdd').value);
+		localStorage.setItem(email, document.getElementById('emailAdd').value );
+		localStorage.setItem("size", mySize+1);
+	}
+</script>
