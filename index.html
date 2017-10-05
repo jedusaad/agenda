@@ -50,7 +50,6 @@
 							</div>
 						</form>
 					</div>
-					
 					<div class="col-md-12" data-toggle="collapse" data-target="#search"><h3>Pesquisar</h3></div>
 					<div id="search" class="collapse">
 					    <form class="col-md-12">
@@ -59,7 +58,7 @@
 							  <input type="text" class="form-control" id="nameSearch">
 							</div>
 							<div class="form-group">
-								<button type="button" class="btn btn-success btn-block" onclick="searchPerson()">Cadastrar</button>
+								<button type="button" class="btn btn-success btn-block" onclick="searchPerson()">Buscar</button>
 							</div>
 						</form>
 					  </div>
@@ -68,6 +67,26 @@
 				</div>
 				
 				<div class="col-md-8" >
+					<div id="update" class="collapse">
+						<form class="col-md-12">
+							<div class="form-group col-md-4">
+								<label for="nameSearch">Nome:</label>
+								<input type="text" class="form-control" id="nameUpdate">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="phoneUpdate">Telefone:</label>
+								<input type="number" class="form-control" id="phoneUpdate">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="emailUpdate">Email:</label>
+								<input type="email" class="form-control" id="emailUpdate">
+							</div>
+								<input type="hidden" id="idUpdate" value="">
+							<div class="form-group col-md-12">
+								<button type="button" class="btn btn-success btn-block" onclick="updateFunc()">Atualizar</button>
+							</div>
+						</form>
+					</div>
 					<table class="table table-striped" id="tableBody">
 					    <thead>
 					      <tr>
@@ -83,11 +102,7 @@
 					</table>
 				</div>
 			</div>
-		</div>
-
-	<div id="result"></div>
-
-	
+		</div>	
 
 	</body>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -115,8 +130,9 @@
 	    		name = "name"+i;
 		 		phone = "phone"+i; 
 		 		email = "email"+i;
+		 		// alert(name);
 		 		
-	    		tableContent = tableContent+"<tr><td>"+localStorage.getItem(name)+"</td><td>"+localStorage.getItem(phone)+"</td><td>"+localStorage.getItem(email)+"</td></tr>";
+	    		tableContent = tableContent+"<tr id='"+i+"'><td id='"+i+"'>"+localStorage.getItem(name)+"</td><td id='"+i+"'>"+localStorage.getItem(phone)+"</td><td id='"+i+"'>"+localStorage.getItem(email)+"</td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#remove'><span id='"+i+"' class='glyphicon glyphicon-remove'></span></a></td><td id='"+i+"'><a id='"+i+"' data-toggle='collapse' data-target='#update' onclick='toUpdate("+i+")'><span id='"+i+"' class='glyphicon glyphicon-pencil'></span> </a></td></tr>";
 	    	}
 	    	document.getElementById("tableContent").innerHTML = tableContent;
 	    }
@@ -141,6 +157,7 @@
 			localStorage.setItem(phone, document.getElementById('phoneAdd').value);
 			localStorage.setItem(email, document.getElementById('emailAdd').value );
 			localStorage.setItem("size", parseInt(mySize) + 1);
+			alert("Registro adicionado.");
 			setTimeout(location.reload(), 200);
 		 }			
 	}
@@ -160,13 +177,13 @@
 		 		phone = "phone"+i; 
 		 		email = "email"+i;
 
+
+
 		 		currentString = localStorage.getItem(name).toLowerCase();
 
 
 		 		if (currentString.search(inputValue.toLowerCase()) < 0 ) {
-		 			alert("not found");
 		 		}else{
-		 			alert("found");
 		 			currentSize = parseInt(currentSize) + 1 ;
 		 			searchPersonTableContent = searchPersonTableContent+"<tr><td>"+localStorage.getItem(name)+"</td><td>"+localStorage.getItem(phone)+"</td><td>"+localStorage.getItem(email)+"</td></tr>";
 		 		}
@@ -179,6 +196,48 @@
 	    	
 
 		 }
+	}
+	//código para tomar conta da atualização
+	
+
+	
+	
+	
+	function toUpdate(divId) {
+
+		alert(divId);
+
+		var name = "name"+divId;
+		var phone = "phone"+divId;
+		var email = "email"+divId;
+
+		    // alert(name);
+
+		var nameUpdate = localStorage.getItem(name);
+		var phoneUpdate = localStorage.getItem(phone);
+		var emailUpdate = localStorage.getItem(email);
+		
+		document.getElementById("nameUpdate").value = nameUpdate;
+		document.getElementById("phoneUpdate").value = phoneUpdate;
+		document.getElementById("emailUpdate").value = emailUpdate;
+
+		document.getElementById("idUpdate").value = divId;
+	}
+
+	function updateFunc() {
+		var divId = document.getElementById("idUpdate").value;
+
+		var name = "name" + divId ;
+		var phone = "phone" + divId ; 
+		var email = "email" + divId ; 
+
+		localStorage.setItem(name, document.getElementById("nameUpdate").value);
+		localStorage.setItem(phone, document.getElementById("phoneUpdate").value);
+		localStorage.setItem(email, document.getElementById("emailUpdate").value);
+
+		alert("Registro atualizado");
+
+		setTimeout(location.reload(), 200);
 	}
 	//localStorage.setItem("size", 0);
 </script>
