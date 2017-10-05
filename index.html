@@ -59,7 +59,7 @@
 							  <input type="text" class="form-control" id="nameSearch">
 							</div>
 							<div class="form-group">
-								<button type="button" class="btn btn-success btn-block">Cadastrar</button>
+								<button type="button" class="btn btn-success btn-block" onclick="searchPerson()">Cadastrar</button>
 							</div>
 						</form>
 					  </div>
@@ -74,7 +74,8 @@
 					        <th>Nome</th>
 					        <th>Telefone</th>
 					        <th>Email</th>
-					        <th>Opções</th>
+					        <th>Apagar</th>
+					        <th>Alterar</th>
 					      </tr>
 					    </thead>
 					    <tbody id="tableContent">
@@ -99,20 +100,23 @@
 	// Check browser support
 	if (typeof(Storage) !== "undefined") {	
 		
-		if (localStorage.getItem("size") === null) {
-			alert(localStorage.getItem("size"));
-			// localStorage.setItem("size", 0);		
-		}
-		else{
-			document.getElementById("result").innerHTML = localStorage.getItem("size");
-			var mySize = localStorage.getItem("size");
-		}
+		var tableContent = "";
+	    var name ;
+		var phone; 
+		var email;
+		var mySize = localStorage.getItem("size");
+		
 	    if (mySize == 0) {
 	    	document.getElementById("tableBody").innerHTML = '<div class="alert alert-danger"><strong>Aviso!</strong> Sua agenda está vazia.</div>' ;
 	    }else{
-	    	var tableContent = "";
-	    	for (var i = 0 ; i <= mySize ; i++) {
-	    		tableContent = tableContent+"<tr><td>John</td><td>Doe</td><td>john@example.com</td></tr>";
+	    	
+
+	    	for (var i = 0 ; i < mySize ; i++) {
+	    		name = "name"+i;
+		 		phone = "phone"+i; 
+		 		email = "email"+i;
+		 		
+	    		tableContent = tableContent+"<tr><td>"+localStorage.getItem(name)+"</td><td>"+localStorage.getItem(phone)+"</td><td>"+localStorage.getItem(email)+"</td></tr>";
 	    	}
 	    	document.getElementById("tableContent").innerHTML = tableContent;
 	    }
@@ -121,15 +125,60 @@
 	}
 
 	function addNew(){
-		var mySize = localStorage.getItem("size");
-		var name = "name"+size;
-		var phone = "phone"+size; 
-		var email = "email"+size;
+
+		//alert("aqui");
+		 var mySize = localStorage.getItem("size");
+		 var name = "name"+mySize;
+		 var phone = "phone"+mySize; 
+		 var email = "email"+mySize;
+		 //alert(name);
 
 
-		localStorage.setItem(name, document.getElementById('nameAdd').value);
-		localStorage.setItem(phone, document.getElementById('phoneAdd').value);
-		localStorage.setItem(email, document.getElementById('emailAdd').value );
-		localStorage.setItem("size", mySize+1);
+		 if (document.getElementById('nameAdd').value == ""||document.getElementById('phoneAdd').value == ""||document.getElementById('emailAdd').value == "") {
+		 	alert("Favor preencher todos os campos");
+		 }else{
+		 	localStorage.setItem(name, document.getElementById('nameAdd').value);
+			localStorage.setItem(phone, document.getElementById('phoneAdd').value);
+			localStorage.setItem(email, document.getElementById('emailAdd').value );
+			localStorage.setItem("size", parseInt(mySize) + 1);
+			setTimeout(location.reload(), 200);
+		 }			
 	}
+	function searchPerson() {
+		var inputValue = document.getElementById('nameSearch').value;
+		var currentSize = 0 ;
+		var currentString = "";
+		var searchPersonTableContent = "";
+		
+		if ( inputValue == "") {
+		 	alert("Favor preencher o campo");
+		 }else{
+		 	
+
+		 	for (var i = 0 ; i < mySize ; i++) {
+	    		name = "name"+i;
+		 		phone = "phone"+i; 
+		 		email = "email"+i;
+
+		 		currentString = localStorage.getItem(name).toLowerCase();
+
+
+		 		if (currentString.search(inputValue.toLowerCase()) < 0 ) {
+		 			alert("not found");
+		 		}else{
+		 			alert("found");
+		 			currentSize = parseInt(currentSize) + 1 ;
+		 			searchPersonTableContent = searchPersonTableContent+"<tr><td>"+localStorage.getItem(name)+"</td><td>"+localStorage.getItem(phone)+"</td><td>"+localStorage.getItem(email)+"</td></tr>";
+		 		}
+		 		
+	    		
+	    	}
+	    	if (currentSize > 0) {
+	    		document.getElementById("tableContent").innerHTML = searchPersonTableContent;
+	    	}
+	    	
+
+		 }
+	}
+	//localStorage.setItem("size", 0);
 </script>
